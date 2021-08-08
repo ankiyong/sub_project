@@ -1,3 +1,9 @@
+import datetime
+days = ['월요일','화요일','수요일','목요일','금요일','토요일','일요일']
+a = datetime.datetime.today().weekday()
+print(days[a])
+
+
 def Volume(set,reps,weight):
     if weight == 0:
         volume = (set * reps)
@@ -8,32 +14,23 @@ def Volume(set,reps,weight):
 Upper_body_day = ['Bench_press','Pull_up','Incline_bench','BB_row','Push_up','One_arm_dumble_row','Easy-bar_Curl','Cable_Curl']
 Lower_body_day = ['squat','Dead_Lift','OHP','lunge','SaReRe','LyingTriceps','Triceps']
 
-def choose_day(kind):
-    if kind == 'upper':
-        set1 = input('벤치프레스 세트 수 : ')
-        event = ['Bench_press', 'Pull_up', 'Incline_bench', 'BB_row', 'Push_up', 'One_arm_dumble_row']
-        for i in range(int(set1)):
-            Bench_press, reps = map(int, input("Bench_press %d Set : " % (i + 1)).split())
-        set2 = input('풀업 세트 수 : ')
-        for i in range(int(set2)):
-            Pull_up, reps = map(int, input("Pull_up %d Set : " % (i + 1)).split())
-        set3 = input('인클라인 벤치 프레스 세트 수 : ')
-        for i in range(int(set3)):
-            Incline_bench, reps = map(int, input("Incline_bench %d Set : " % (i + 1)).split())
-        set4 = input('바벨 로우 세트 수 : ')
-        for i in range(int(set4)):
-            BB_row, reps = map(int, input("BB_row %d Set : " % (i + 1)).split())
-        set5 = input('푸쉬 업 세트 수 : ')
-        for i in range(int(set5)):
-            Push_up, reps = map(int, input("Push_up %d Set : " % (i + 1)).split())
-        set6 = input('원 암 덤벨 로우 세트 수: ')
-        for i in range(int(set6)):
-            One_arm_dumble_row, reps = map(int, input("One_arm_dumble_row %d Set : " % (i + 1)).split())
-        print('Bench_press Volumes : %d kg' % (Volume(set1, reps, Bench_press)))
-        print('Pull_up Volumes : %d kg' % (Volume(set2, reps, Pull_up)))
-        print('Incline_bench Volumes : %d kg' % (Volume(set3, reps, Incline_bench)))
-        print('BB_row Volumes : %d kg' % (Volume(set4, reps, BB_row)))
-        print('Push_up Volumes : %d kg' % (Volume(set5, reps, Push_up)))
-        print('One_arm_dumble_row Volumes : %d kg' % (Volume(set6, reps, One_arm_dumble_row)))
+def VolumeCal(kind):
+    weight = []
+    reps = []
+    if kind == '하체':
+        for i in range(0,len(Lower_body_day)):
+            set = input(Lower_body_day[i]+'세트 수 :')
+            for k in range(int(set)):
+                weight.append(int(input('Weight : ')))
+                reps.append(int(input('Reps : ')))
 
+                print(Lower_body_day[i],'set:',set,'weight:',weight[k],'kg','reps: ',reps[k],'kg')
+    elif kind == '상체':
+        for i in range(0,len(Upper_body_day)):
+            set = input(Lower_body_day[i]+'세트 수 :')
+            for _ in range(int(set)):
+                weight,reps = map(int,input('무게 X 횟수:').split())
+
+    else:
+        print('~상/하체를 입력해주세요~')
 
